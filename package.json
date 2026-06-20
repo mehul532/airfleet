@@ -1,0 +1,15 @@
+{
+  "name": "airfleet-orchestrator",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Fleet-management layer for DIY air filtration units.",
+  "scripts": {
+    "dev": "concurrently \"npm --prefix server run dev\" \"npm --prefix client run dev\"",
+    "install:all": "npm install --prefix server && npm install --prefix client",
+    "build": "npm --prefix client run build",
+    "start": "npm --prefix server start"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
