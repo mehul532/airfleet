@@ -13,7 +13,7 @@ router.get(
         path: "unitId",
         populate: { path: "siteId" }
       })
-      .sort({ resolved: 1, createdAt: 1 });
+      .sort({ createdAt: -1 });
     res.json(alerts);
   })
 );

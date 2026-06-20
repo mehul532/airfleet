@@ -105,9 +105,16 @@ router.get(
     const openAlerts = await Alert.find({ unitId: unit._id, resolved: false }).sort({
       createdAt: -1
     });
+    const latestReading = await latestReadingFor(unit._id);
 
     res.json({
-      unit: serializeUnit(unit, await latestReadingFor(unit._id)),
+      unit: serializeUnit(unit, latestReading),
+      currentPm25: latestReading?.pm25 ?? null,
+      powerState: unit.powerState,
+      filterLifePercent: Math.max(
+        0,
+        100 - Math.min(100, Math.round((unit.cumulativeParticulateLoad / FILTER_CAPACITY) * 100))
+      ),
       thresholdPm25: 35,
       filterCapacity: FILTER_CAPACITY,
       openAlerts

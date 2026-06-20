@@ -11,7 +11,7 @@ const alertSchema = new mongoose.Schema(
     type: {
       type: String,
       enum: ["replace_filter"],
-      required: true
+      default: "replace_filter"
     },
     createdAt: { type: Date, default: Date.now, index: true },
     resolved: { type: Boolean, default: false, index: true },
